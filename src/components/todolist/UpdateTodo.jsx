@@ -1,44 +1,56 @@
-import { useState } from 'react';
+import { useState } from 'react'
 
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 // TODO assignment 5 todo 수정 기능 구현
-const UpdateTodo = ({ id, todo, isCompleted, userId, toggleUpdate, updateTodo }) => {
+const UpdateTodo = ({
+  id,
+  todo,
+  isCompleted,
+  userId,
+  toggleUpdate,
+  updateTodo,
+}) => {
   const [form, setForm] = useState({
     id,
     todo,
     isCompleted,
     userId,
     hasError: false,
-  });
+  })
 
   // form input field 값이 변화할 때마다 이를 반영하는 함수
   const changeHandler = (e) => {
+<<<<<<< HEAD
     const field = e.target.id;
     const value = e.target.value;
+=======
+    const field = e.target.id
+    const value = e.target.value
+>>>>>>> 8453780378d3a61e0ed5b2c50d2552f24397e111
     setForm((prev) => ({
       ...prev,
       [field]: value,
       hasError: !value,
-    }));
-  };
+    }))
+  }
 
   // 수정하기 모드 isCompleted 값 변경
   const toggleHandler = (e) => {
     setForm((prev) => ({
       ...prev,
       isCompleted: !prev.isCompleted,
-    }));
-  };
+    }))
+  }
 
   const submitHandler = (e) => {
     updateTodo({
       id,
       todo: form.todo,
       isCompleted: form.isCompleted,
-    });
-    toggleUpdate();
-  };
+    })
+    toggleUpdate()
+  }
 
   return (
     <>
@@ -47,7 +59,9 @@ const UpdateTodo = ({ id, todo, isCompleted, userId, toggleUpdate, updateTodo })
         <StToggle onClick={toggleHandler}>{!form.isCompleted ? '완료로 변경' : '진행 중으로 변경'}</StToggle>
       </StState>
       <StInput value={form.todo} onChange={changeHandler} id="todo" />
-      {form.hasError ? <StError>수정하기 위해서는 할일을 기입해주셔야해요.</StError> : null}
+      {form.hasError ? (
+        <StError>수정하기 위해서는 할일을 기입해주셔야해요.</StError>
+      ) : null}
       <StButtons>
         <StButton onClick={submitHandler} disabled={form.hasError}>
           제출하기
@@ -55,23 +69,23 @@ const UpdateTodo = ({ id, todo, isCompleted, userId, toggleUpdate, updateTodo })
         <StButton onClick={toggleUpdate}>취소하기</StButton>
       </StButtons>
     </>
-  );
-};
+  )
+}
 
-export default UpdateTodo;
+export default UpdateTodo
 
 const StFont = styled.div`
   font-family: 'Noto Sans KR';
   font-style: normal;
   font-weight: 500;
   letter-spacing: -0.5px;
-`;
+`
 
 const StState = styled.div`
   display: flex;
   flex-direction: row;
   padding: 10px 0px;
-`;
+`
 
 const StStatus = styled(StFont)`
   width: 45px;
@@ -85,7 +99,7 @@ const StStatus = styled(StFont)`
   color: #256ef1;
   text-align: center;
   padding: 3px;
-`;
+`
 
 const StToggle = styled.button`
   background: transparent;
@@ -96,7 +110,7 @@ const StToggle = styled.button`
     text-decoration: underline;
     color: #256ef1;
   }
-`;
+`
 
 const StInput = styled.input`
   background: #ffffff;
@@ -111,18 +125,18 @@ const StInput = styled.input`
     outline: none;
     border: 1.2px solid #256ef1;
   }
-`;
+`
 
 const StError = styled(StFont)`
   font-size: 10px;
   line-height: 14px;
   color: #256ef1;
-`;
+`
 
 const StButtons = styled.div`
   display: flex;
   gap: 10px;
-`;
+`
 
 const StButton = styled.button`
   width: calc(100% - 40px - 10px);
@@ -139,4 +153,4 @@ const StButton = styled.button`
     background: ${(props) => (!props.disabled ? '#256ef1' : '#f3f3f3')};
     color: ${(props) => (!props.disabled ? '#ffffff' : 'none')};
   }
-`;
+`

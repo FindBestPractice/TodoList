@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
+// TODO useInput 변경 및 Input, Button 컴포넌트 분리
 // TODO Assignment 4: todo 입력창에 입력시 todoList 추가
-const CreateTodo = ({ createTodo }) => {
+const TodoForm = ({ createTodo }) => {
   const [todo, setTodo] = useState('');
 
   // input field의 변경 내용 반영
@@ -42,7 +43,7 @@ const CreateTodo = ({ createTodo }) => {
   );
 };
 
-export default CreateTodo;
+export default TodoForm;
 
 const StForm = styled.form`
   display: flex;
