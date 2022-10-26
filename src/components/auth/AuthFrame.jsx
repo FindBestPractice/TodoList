@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import Form from "./Form";
+import Form from './Form';
 
 const AuthFrame = () => {
   return (

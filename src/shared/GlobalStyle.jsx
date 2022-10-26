@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
 // reset all html tags with createGlobalStyle
 const GlobalStyle = createGlobalStyle`

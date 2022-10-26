@@ -1,15 +1,10 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import Todo from "./Todo";
+import Todo from './Todo';
 
 const List = ({ list, updateTodo, deleteTodo }) => {
-  const todos = list.map((todo) => (
-    <Todo
-      key={todo.id}
-      {...todo}
-      updateTodo={updateTodo}
-      deleteTodo={deleteTodo}
-    />
+  const todos = list.map(todo => (
+    <Todo key={todo.id} {...todo} updateTodo={updateTodo} deleteTodo={deleteTodo} />
   ));
   return <StLayout>{todos}</StLayout>;
 };

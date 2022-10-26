@@ -1,20 +1,16 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import List from "./List";
+import List from './List';
 
 // TODO Assignment 4: todoList 페이지에는 내용과 완료 여부 표시
 const Lists = ({ todos, updateTodo, deleteTodo }) => {
-  const workingList = todos.filter((todo) => !todo.isCompleted);
-  const doneList = todos.filter((todo) => todo.isCompleted);
+  const workingList = todos.filter(todo => !todo.isCompleted);
+  const doneList = todos.filter(todo => todo.isCompleted);
   return (
     <>
       <StSection>
         <StCategory>Working...🔥</StCategory>
-        <List
-          list={workingList}
-          updateTodo={updateTodo}
-          deleteTodo={deleteTodo}
-        />
+        <List list={workingList} updateTodo={updateTodo} deleteTodo={deleteTodo} />
       </StSection>
       <StSection>
         <StCategory>Done..! 🎉</StCategory>
@@ -35,7 +31,7 @@ const StSection = styled.div`
 `;
 
 const StCategory = styled.div`
-  font-family: "Noto Sans KR";
+  font-family: 'Noto Sans KR';
   font-style: normal;
   font-weight: 700;
   letter-spacing: -0.5px;

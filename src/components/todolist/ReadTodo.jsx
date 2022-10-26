@@ -1,18 +1,18 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 // TODO assignment 5 todo 삭제 기능 구현
 const ReadTodo = ({ id, todo, isCompleted, toggleUpdate, deleteTodo }) => {
   // todo 읽기 모드에서 삭제 API 호출
   const deleteHandler = () => {
-    deleteTodo({ id });
+    deleteTodo({
+      id,
+    });
   };
 
   return (
     <>
-      <StStatus>{isCompleted ? "완료" : "진행중"}</StStatus>
-      <StTodo>
-        {todo?.length <= 28 ? todo : todo?.slice(0, 26).concat("...")}
-      </StTodo>
+      <StStatus>{isCompleted ? '완료' : '진행중'}</StStatus>
+      <StTodo>{todo?.length <= 28 ? todo : todo?.slice(0, 26).concat('...')}</StTodo>
       <StButtons>
         <StButton onClick={toggleUpdate}>수정하기</StButton>
         <StButton onClick={deleteHandler}>삭제하기</StButton>
@@ -24,7 +24,7 @@ const ReadTodo = ({ id, todo, isCompleted, toggleUpdate, deleteTodo }) => {
 export default ReadTodo;
 
 const StFont = styled.div`
-  font-family: "Noto Sans KR";
+  font-family: 'Noto Sans KR';
   font-style: normal;
   font-weight: 500;
   letter-spacing: -0.5px;

@@ -1,30 +1,22 @@
-import { useState } from "react";
-import styled from "styled-components";
+import { useState } from 'react';
+import styled from 'styled-components';
 
-import ReadTodo from "./ReadTodo";
-import UpdateTodo from "./UpdateTodo";
+import ReadTodo from './ReadTodo';
+import UpdateTodo from './UpdateTodo';
 
 const Todo = ({ updateTodo, deleteTodo, ...props }) => {
   const [onUpdate, setOnUpdate] = useState(false);
 
   const toggleUpdate = () => {
-    setOnUpdate((prev) => !prev);
+    setOnUpdate(prev => !prev);
   };
 
   return (
     <StLayout>
       {!onUpdate ? (
-        <ReadTodo
-          toggleUpdate={toggleUpdate}
-          deleteTodo={deleteTodo}
-          {...props}
-        />
+        <ReadTodo toggleUpdate={toggleUpdate} deleteTodo={deleteTodo} {...props} />
       ) : (
-        <UpdateTodo
-          toggleUpdate={toggleUpdate}
-          updateTodo={updateTodo}
-          {...props}
-        />
+        <UpdateTodo toggleUpdate={toggleUpdate} updateTodo={updateTodo} {...props} />
       )}
     </StLayout>
   );

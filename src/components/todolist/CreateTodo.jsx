@@ -1,39 +1,41 @@
-import { useState } from "react";
-import styled from "styled-components";
+import { useState } from 'react';
+import styled from 'styled-components';
 
 // TODO Assignment 4: todo 입력창에 입력시 todoList 추가
 const CreateTodo = ({ createTodo }) => {
-  const [todo, setTodo] = useState("");
+  const [todo, setTodo] = useState('');
 
   // input field의 변경 내용 반영
-  const changeHandler = (e) => {
+  const changeHandler = e => {
     const value = e.target.value;
     setTodo(value);
   };
 
   // 사용자가 제출 버튼을 눌렀을 때 신규 todo를 추가하는 함수
-  const submitHandler = (e) => {
+  const submitHandler = e => {
     e.preventDefault();
 
-    createTodo({ todo });
+    createTodo({
+      todo,
+    });
 
     // form 초기화
-    setTodo("");
+    setTodo('');
   };
 
   return (
     <StForm onsubmit={submitHandler}>
       <StField>
         <StInput
-          type='text'
-          id='todo'
+          type="text"
+          id="todo"
           value={todo}
-          placeholder='할 일을 자유롭게 추가해보세요!'
+          placeholder="할 일을 자유롭게 추가해보세요!"
           onChange={changeHandler}
           required
         />
       </StField>
-      <StButton type='submit' onClick={submitHandler} disabled={!todo}>
+      <StButton type="submit" onClick={submitHandler} disabled={!todo}>
         추가하기
       </StButton>
     </StForm>
@@ -80,14 +82,13 @@ const StInput = styled.input`
 const StButton = styled.button`
   width: 90px;
   height: 40px;
-  background: ${(props) => (!props.disabled ? "#256ef1" : "#a5a5a54a")};
-  border: ${(props) =>
-    !props.disabled ? "1px solid #256ef1" : "1px solid #a5a5a54a"};
+  background: ${props => (!props.disabled ? '#256ef1' : '#a5a5a54a')};
+  border: ${props => (!props.disabled ? '1px solid #256ef1' : '1px solid #a5a5a54a')};
   color: #ffffff;
   border-radius: 6px;
   transition: all 0.3s;
   &:hover {
-    cursor: ${(props) => (!props.disabled ? "pointer" : "default")};
-    transform: ${(props) => (!props.disabled ? "scale(1.05)" : "none")};
+    cursor: ${props => (!props.disabled ? 'pointer' : 'default')};
+    transform: ${props => (!props.disabled ? 'scale(1.05)' : 'none')};
   }
 `;

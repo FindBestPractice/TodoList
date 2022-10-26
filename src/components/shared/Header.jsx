@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-const Header = (props) => {
+const Header = props => {
   return (
     <StLayout>
       <StLogo>Simple Todos</StLogo>
@@ -27,14 +27,14 @@ const StLayout = styled.header`
 `;
 
 const StFont = styled.div`
-  font-family: "Noto Sans KR";
+  font-family: 'Noto Sans KR';
   font-style: normal;
   font-weight: 500;
   letter-spacing: -0.5px;
 `;
 
 const StLogo = styled(StFont)`
-  font-family: "Lobster";
+  font-family: 'Lobster';
   font-size: 20px;
   color: #256ef1;
 

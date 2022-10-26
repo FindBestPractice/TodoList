@@ -1,4 +1,4 @@
-import AuthFrame from "../components/auth/AuthFrame";
+import AuthFrame from '../components/auth/AuthFrame';
 
 const Auth = () => {
   return (
