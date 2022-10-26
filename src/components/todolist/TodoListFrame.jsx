@@ -1,33 +1,33 @@
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
+import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import styled from 'styled-components'
 
-import { apis } from '../../shared/axios';
-import CreateTodo from './CreateTodo';
-import Lists from './Lists';
+import { apis } from '../../shared/axios'
+import TodoForm from './TodoForm'
+import Lists from './Lists'
 
 // TODO Assignment 4: /todo 페이지 만들기
 const TodoListFrame = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState([])
 
   // todo Create
   const addTodo = async ({ todo }) => {
     const resp = await apis.create_todo({
       todo,
-    });
-    const createdTodo = resp.data;
+    })
+    const createdTodo = resp.data
 
-    setTodos(prev => [...prev, createdTodo]);
-  };
+    setTodos((prev) => [...prev, createdTodo])
+  }
 
   // todos Read
   const getTodos = async () => {
-    const resp = await apis.get_todos();
-    const allTodos = resp.data;
-    setTodos(allTodos);
-  };
+    const resp = await apis.get_todos()
+    const allTodos = resp.data
+    setTodos(allTodos)
+  }
 
   // todo Update
   const updateTodo = async ({ id, todo, isCompleted }) => {
@@ -35,43 +35,45 @@ const TodoListFrame = () => {
       id,
       todo,
       isCompleted,
-    });
-    const updatedTodo = resp.data;
-    setTodos(prev => prev.map(item => (item.id === updatedTodo.id ? updatedTodo : item)));
-  };
+    })
+    const updatedTodo = resp.data
+    setTodos((prev) =>
+      prev.map((item) => (item.id === updatedTodo.id ? updatedTodo : item)),
+    )
+  }
 
   // todo Delete
   const deleteTodo = async ({ id }) => {
     await apis.delete_todo({
       id,
-    });
-    setTodos(prev => prev.filter(item => item.id !== id));
-  };
+    })
+    setTodos((prev) => prev.filter((item) => item.id !== id))
+  }
 
   // Assignment 3: 로그인 여부에 따른 리다이렉트 처리
   const checkToken = () => {
     if (localStorage.getItem('AccessToken')) {
       // todos를 가져옴
-      getTodos();
-      return;
+      getTodos()
+      return
     }
     // 토큰 존재하지 않는 경우 /로 리다이렉트
-    navigate('/');
-  };
+    navigate('/')
+  }
 
   useEffect(() => {
-    checkToken();
-  }, []);
+    checkToken()
+  }, [])
 
   return (
     <StLayout>
-      <CreateTodo createTodo={addTodo} />
+      <TodoForm createTodo={addTodo} />
       <Lists todos={todos} updateTodo={updateTodo} deleteTodo={deleteTodo} />
     </StLayout>
-  );
-};
+  )
+}
 
-export default TodoListFrame;
+export default TodoListFrame
 
 const StLayout = styled.div`
   width: 100vw;
@@ -79,4 +81,4 @@ const StLayout = styled.div`
   background: rgba(236, 236, 236, 0.3);
   padding: 0px 30px;
   overflow: scroll;
-`;
+`

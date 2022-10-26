@@ -1,28 +1,36 @@
-import { useState } from 'react';
-import styled from 'styled-components';
+import { useState } from 'react'
+import styled from 'styled-components'
 
-import ReadTodo from './ReadTodo';
-import UpdateTodo from './UpdateTodo';
+import ReadTodo from './ReadTodo'
+import UpdateTodo from './UpdateTodo'
 
 const Todo = ({ updateTodo, deleteTodo, ...props }) => {
-  const [onUpdate, setOnUpdate] = useState(false);
+  const [onUpdate, setOnUpdate] = useState(false)
 
   const toggleUpdate = () => {
-    setOnUpdate(prev => !prev);
-  };
+    setOnUpdate((prev) => !prev)
+  }
 
   return (
     <StLayout>
       {!onUpdate ? (
-        <ReadTodo toggleUpdate={toggleUpdate} deleteTodo={deleteTodo} {...props} />
+        <ReadTodo
+          toggleUpdate={toggleUpdate}
+          deleteTodo={deleteTodo}
+          {...props}
+        />
       ) : (
-        <UpdateTodo toggleUpdate={toggleUpdate} updateTodo={updateTodo} {...props} />
+        <UpdateTodo
+          toggleUpdate={toggleUpdate}
+          updateTodo={updateTodo}
+          {...props}
+        />
       )}
     </StLayout>
-  );
-};
+  )
+}
 
-export default Todo;
+export default Todo
 
 const StLayout = styled.div`
   grid-column: span 4;
@@ -40,4 +48,4 @@ const StLayout = styled.div`
   @media all and (max-width: 700px) {
     grid-column: span 4;
   }
-`;
+`
