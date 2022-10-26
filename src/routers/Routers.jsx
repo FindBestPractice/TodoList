@@ -7,8 +7,8 @@ import NotFound from '../pages/NotFound';
 const Routers = () => {
   return (
     <BrowserRouter>
-			<Routes>
-				{/* TODO : Public Private Router로 변경하기 */}
+      <Routes>
+        {/* TODO : Public Private Router로 변경하기 */}
         <Route path="/" element={<Auth />} />
         <Route path="/todo" element={<TodoList />} />
         <Route path="*" element={<NotFound />} />

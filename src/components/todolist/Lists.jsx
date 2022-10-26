@@ -4,8 +4,8 @@ import List from './List';
 
 // TODO Assignment 4: todoList 페이지에는 내용과 완료 여부 표시
 const Lists = ({ todos, updateTodo, deleteTodo }) => {
-  const workingList = todos.filter(todo => !todo.isCompleted);
-  const doneList = todos.filter(todo => todo.isCompleted);
+  const workingList = todos.filter((todo) => !todo.isCompleted);
+  const doneList = todos.filter((todo) => todo.isCompleted);
   return (
     <>
       <StSection>

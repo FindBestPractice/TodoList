@@ -6,13 +6,13 @@ const CreateTodo = ({ createTodo }) => {
   const [todo, setTodo] = useState('');
 
   // input field의 변경 내용 반영
-  const changeHandler = e => {
+  const changeHandler = (e) => {
     const value = e.target.value;
     setTodo(value);
   };
 
   // 사용자가 제출 버튼을 눌렀을 때 신규 todo를 추가하는 함수
-  const submitHandler = e => {
+  const submitHandler = (e) => {
     e.preventDefault();
 
     createTodo({
@@ -82,13 +82,13 @@ const StInput = styled.input`
 const StButton = styled.button`
   width: 90px;
   height: 40px;
-  background: ${props => (!props.disabled ? '#256ef1' : '#a5a5a54a')};
-  border: ${props => (!props.disabled ? '1px solid #256ef1' : '1px solid #a5a5a54a')};
+  background: ${(props) => (!props.disabled ? '#256ef1' : '#a5a5a54a')};
+  border: ${(props) => (!props.disabled ? '1px solid #256ef1' : '1px solid #a5a5a54a')};
   color: #ffffff;
   border-radius: 6px;
   transition: all 0.3s;
   &:hover {
-    cursor: ${props => (!props.disabled ? 'pointer' : 'default')};
-    transform: ${props => (!props.disabled ? 'scale(1.05)' : 'none')};
+    cursor: ${(props) => (!props.disabled ? 'pointer' : 'default')};
+    transform: ${(props) => (!props.disabled ? 'scale(1.05)' : 'none')};
   }
 `;

@@ -8,7 +8,7 @@ const Todo = ({ updateTodo, deleteTodo, ...props }) => {
   const [onUpdate, setOnUpdate] = useState(false);
 
   const toggleUpdate = () => {
-    setOnUpdate(prev => !prev);
+    setOnUpdate((prev) => !prev);
   };
 
   return (
