@@ -3,11 +3,6 @@ import styled from 'styled-components'
 import Todo from './Todo'
 
 const List = ({ list, updateTodo, deleteTodo }) => {
-<<<<<<< HEAD
-  const todos = list.map((todo) => <Todo key={todo.id} {...todo} updateTodo={updateTodo} deleteTodo={deleteTodo} />);
-  return <StLayout>{todos}</StLayout>;
-};
-=======
   const todos = list.map((todo) => (
     <Todo
       key={todo.id}
@@ -18,7 +13,6 @@ const List = ({ list, updateTodo, deleteTodo }) => {
   ))
   return <StLayout>{todos}</StLayout>
 }
->>>>>>> 8453780378d3a61e0ed5b2c50d2552f24397e111
 
 export default List
 

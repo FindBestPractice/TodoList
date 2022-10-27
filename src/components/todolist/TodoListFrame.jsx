@@ -14,59 +14,39 @@ const TodoListFrame = () => {
 
   // todo Create
   const addTodo = async ({ todo }) => {
-    const resp = await apis.create_todo({
+    const resp = await apis.createTodo({
       todo,
     })
     const createdTodo = resp.data
 
-<<<<<<< HEAD
-    setTodos((prev) => [...prev, createdTodo]);
-  };
-=======
     setTodos((prev) => [...prev, createdTodo])
   }
->>>>>>> 8453780378d3a61e0ed5b2c50d2552f24397e111
 
   // todos Read
   const getTodos = async () => {
-    const resp = await apis.get_todos()
-    const allTodos = resp.data
+    const { data: allTodos } = await apis.getTodos()
     setTodos(allTodos)
   }
 
   // todo Update
   const updateTodo = async ({ id, todo, isCompleted }) => {
-    const resp = await apis.update_todo({
+    const { data: updatedTodo } = await apis.updateTodo({
       id,
       todo,
       isCompleted,
-<<<<<<< HEAD
-    });
-    const updatedTodo = resp.data;
-    setTodos((prev) => prev.map((item) => (item.id === updatedTodo.id ? updatedTodo : item)));
-  };
-=======
     })
-    const updatedTodo = resp.data
     setTodos((prev) =>
       prev.map((item) => (item.id === updatedTodo.id ? updatedTodo : item)),
     )
   }
->>>>>>> 8453780378d3a61e0ed5b2c50d2552f24397e111
 
   // todo Delete
   const deleteTodo = async ({ id }) => {
-    await apis.delete_todo({
+    await apis.deleteTodo({
       id,
-<<<<<<< HEAD
-    });
-    setTodos((prev) => prev.filter((item) => item.id !== id));
-  };
-=======
     })
     setTodos((prev) => prev.filter((item) => item.id !== id))
   }
->>>>>>> 8453780378d3a61e0ed5b2c50d2552f24397e111
 
   // Assignment 3: 로그인 여부에 따른 리다이렉트 처리
   const checkToken = () => {

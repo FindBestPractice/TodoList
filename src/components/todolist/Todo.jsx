@@ -8,13 +8,8 @@ const Todo = ({ updateTodo, deleteTodo, ...props }) => {
   const [onUpdate, setOnUpdate] = useState(false)
 
   const toggleUpdate = () => {
-<<<<<<< HEAD
-    setOnUpdate((prev) => !prev);
-  };
-=======
     setOnUpdate((prev) => !prev)
   }
->>>>>>> 8453780378d3a61e0ed5b2c50d2552f24397e111
 
   return (
     <StLayout>

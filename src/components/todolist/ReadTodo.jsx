@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 // TODO assignment 5 todo 삭제 기능 구현
 const ReadTodo = ({ id, todo, isCompleted, toggleUpdate, deleteTodo }) => {
@@ -6,29 +6,30 @@ const ReadTodo = ({ id, todo, isCompleted, toggleUpdate, deleteTodo }) => {
   const deleteHandler = () => {
     deleteTodo({
       id,
-    });
-  };
+    })
+  }
 
   return (
     <>
       <StStatus>{isCompleted ? '완료' : '진행중'}</StStatus>
-      <StTodo>{todo?.length <= 28 ? todo : todo?.slice(0, 26).concat('...')}</StTodo>
+      {/* <StTodo>{todo?.length <= 28 ? todo : todo?.slice(0, 26).concat('...')}</StTodo> */}
+      <StTodo>{todo}</StTodo>
       <StButtons>
         <StButton onClick={toggleUpdate}>수정하기</StButton>
         <StButton onClick={deleteHandler}>삭제하기</StButton>
       </StButtons>
     </>
-  );
-};
+  )
+}
 
-export default ReadTodo;
+export default ReadTodo
 
 const StFont = styled.div`
   font-family: 'Noto Sans KR';
   font-style: normal;
   font-weight: 500;
   letter-spacing: -0.5px;
-`;
+`
 
 const StStatus = styled(StFont)`
   width: 45px;
@@ -43,17 +44,22 @@ const StStatus = styled(StFont)`
   text-align: center;
   padding: 3px;
   margin-bottom: 15px;
-`;
+`
 
 const StTodo = styled(StFont)`
   font-size: 1rem;
   margin-bottom: 15px;
-`;
+
+  width: calc(100% - 10px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`
 
 const StButtons = styled.div`
   display: flex;
   gap: 10px;
-`;
+`
 
 const StButton = styled.button`
   width: calc(100% - 40px - 10px);
@@ -71,4 +77,4 @@ const StButton = styled.button`
     background: #256ef1;
     color: #ffffff;
   }
-`;
+`
