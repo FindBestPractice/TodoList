@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import { apis } from '../../shared/axios';
+import ErrorMessage from '../../elements/ErrMsg';
 import { ReactComponent as Email } from '../../assets/email.svg';
 import { ReactComponent as Password } from '../../assets/password.svg';
 import { Input } from '../../elements/Input';
@@ -97,34 +98,16 @@ const Form = (props) => {
     const { access_token, statusCode } = resp.data;
 
     // TODO interceptor try catch
-    // 잘못된 응답일 시 서버 에러 메시지 띄움
-    if (statusCode === 400) {
-      setForm((prev) => ({
-        ...prev,
-        emailErr: '이미 가입된 이메일입니다.',
-      }));
-      return;
+    // error코드가 있다면 statusResult를 이용하여 form에 저장
+    const statusResult = ErrorMessage(statusCode);
+    if (statusResult) {
+      setForm((prev) => ({ ...prev, ...statusResult }));
+    } else {
+      // 올바른 응답일시 로컬 스토리지에 토큰 값 저장
+      localStorage.setItem('AccessToken', access_token);
+      // // /todo로 이동
+      navigate('/todo');
     }
-    if (statusCode === 401) {
-      setForm((prev) => ({
-        ...prev,
-        passwordErr: '잘못된 비밀번호입니다.',
-      }));
-      return;
-    }
-    if (statusCode === 404) {
-      setForm((prev) => ({
-        ...prev,
-        emailErr: '가입되지 않은 이메일입니다.',
-      }));
-      return;
-    }
-
-    // 올바른 응답일시 로컬 스토리지에 토큰 값 저장
-    localStorage.setItem('AccessToken', access_token);
-
-    // /todo로 이동
-    navigate('/todo');
     return;
   };
 
