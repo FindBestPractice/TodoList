@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import styled from 'styled-components'
-import { Input } from '../../../elements/Input'
+import styled from 'styled-components';
+import { Input } from '../../../elements/Input';
 import Button from '../../../elements/Button';
 
 // TODO assignment 5 todo 수정 기능 구현
@@ -52,8 +52,8 @@ const UpdateTodo = ({ id, todo, isCompleted, userId, toggleUpdate, updateTodo })
         <StError>수정하기 위해서는 할일을 기입해주셔야해요.</StError>
       )}
       <StButtons>
-        <Button text="제출하기기기기" component="ReadUpdateTodo" onClick={submitHandler} disabled={form.hasError} />
-        <Button text="수정하기기기기" component="ReadUpdateTodo" onClick={toggleUpdate} />
+        <Button text="제출하기" component="ReadUpdateTodo" onClick={submitHandler} disabled={form.hasError} />
+        <Button text="수정하기" component="ReadUpdateTodo" onClick={toggleUpdate} />
       </StButtons>
     </>
   );
