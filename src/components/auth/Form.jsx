@@ -1,31 +1,18 @@
 import { useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import { apis } from '../../shared/axios';
 import Button from '../../elements/Button';
-import ErrorMessage from '../../elements/ErrMsg';
 import { ReactComponent as Email } from '../../assets/email.svg';
 import { ReactComponent as Password } from '../../assets/password.svg';
 import { Input } from '../../elements/Input';
 import useInput from '../../hooks/useInput';
+import { setToken } from '../../shared/token';
 
 const Form = (props) => {
   const navigate = useNavigate();
   const [email, emailHandler, emailIsVaild, emailErrMsg] = useInput('email');
   const [password, passwordHandler, passwordIsVaild, passwordErrMsg] = useInput('password');
-
-  // TODO Assignment 3: 로그인 여부에 따른 리다이렉트 처리
-  const checkToken = () => {
-    if (!localStorage.getItem('AccessToken')) {
-      return;
-    }
-    // 토큰 존재하는 경우 /todo로 리다이렉트
-    navigate('/todo');
-  };
-
-  useEffect(() => {
-    checkToken();
-  }, []);
 
   // 초기 signin 탭에서 시작
   const [onSignIn, setOnSignIn] = useState(true);
@@ -88,19 +75,12 @@ const Form = (props) => {
     else resp = await apis.signUp({ email, password });
 
     // 응답으로 받아온 토큰 로컬 스토리지 저장
-    const { access_token, statusCode } = resp.data;
+    const { access_token } = resp.data;
+    setToken(access_token);
+    localStorage.setItem('AccessToken', access_token);
+    // /todo로 이동
+    navigate('/todo');
 
-    // TODO interceptor try catch
-    // error코드가 있다면 statusResult를 이용하여 form에 저장
-    const statusResult = ErrorMessage(statusCode);
-    if (statusResult) {
-      setForm((prev) => ({ ...prev, ...statusResult }));
-    } else {
-      // 올바른 응답일시 로컬 스토리지에 토큰 값 저장
-      localStorage.setItem('AccessToken', access_token);
-      // // /todo로 이동
-      navigate('/todo');
-    }
     return;
   };
 
