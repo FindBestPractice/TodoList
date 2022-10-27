@@ -2,9 +2,11 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { Input } from '../../../elements/Input';
 import Button from '../../../elements/Button';
+import useInput from '../../../hooks/useInput';
 
 // TODO assignment 5 todo 수정 기능 구현
 const UpdateTodo = ({ id, todo, isCompleted, userId, toggleUpdate, updateTodo }) => {
+  const [editTodo, editTodoHandler, editIsValid, editErrMsg] = useInput('edit', todo);
   const [form, setForm] = useState({
     id,
     todo,
@@ -35,7 +37,7 @@ const UpdateTodo = ({ id, todo, isCompleted, userId, toggleUpdate, updateTodo })
   const submitHandler = (e) => {
     updateTodo({
       id,
-      todo: form.todo,
+      todo: editTodo,
       isCompleted: form.isCompleted,
     });
     toggleUpdate();
@@ -47,10 +49,8 @@ const UpdateTodo = ({ id, todo, isCompleted, userId, toggleUpdate, updateTodo })
         <StStatus>{!form.isCompleted ? '진행중' : '완료'}</StStatus>
         <StToggle onClick={toggleHandler}>{!form.isCompleted ? '완료로 변경' : '진행 중으로 변경'}</StToggle>
       </StState>
-      <Input value={form.todo} onChange={changeHandler} id="todo" func="updateTodo" />
-      {form.hasError && (
-        <StError>수정하기 위해서는 할일을 기입해주셔야해요.</StError>
-      )}
+      <Input value={editTodo} onChange={editTodoHandler} id="todo" func="updateTodo" />
+      {!editIsValid && <StError>{editErrMsg}</StError>}
       <StButtons>
         <Button text="제출하기" component="ReadUpdateTodo" onClick={submitHandler} disabled={form.hasError} />
         <Button text="수정하기" component="ReadUpdateTodo" onClick={toggleUpdate} />
