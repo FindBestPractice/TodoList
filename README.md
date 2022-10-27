@@ -1,6 +1,6 @@
-# 원티드 프리온보딩 프론트엔드 - 선발 과제
+# 원티드 프리온보딩 프론트엔드 - Week 1-1
 
-원티드 프리온보딩 프론트엔드 5팀 find-best-todolist입니다.<br>
+원티드 프리온보딩 **프론트엔드 5팀**의 **find-best-todolist**입니다.<br>
 해당 레포지토리는 원티드 프리온보딩 1차 과제로 로그인/회원가입 기능이 있는 간략한 Todo List입니다.<br>
 해당 프로젝트에서는 원티드에서 제공한 [API]('https://github.com/walking-sunset/selection-task') 를 사용하였습니다.
 
@@ -21,33 +21,6 @@
 | 지재영          | https://github.com/jaeyeong815   |
 | 차혜인          | https://github.com/hyeincha      |
 
-## Best Practice 선정 이유
-
-- 상태 코드를 사용한 오류 핸들링 부분이 좋습니다.
-- 파일의 기능이나 라우트에 의한 파일 구조가 잘 설계되어 있습니다.
-- 컴포넌트가 기능 단위로 세분화되어있어 상태값이 바뀔 때 마다 전체 페이지가 재렌더링 되는 현상을 막아 성능 최적화에 도움이 되었습니다.
-
-## 개선 부분
-
-### useInput 커스텀 훅 적용
-email, password, todo 수정 등 다양한 곳에서 input이 사용되고 있고 이 input들에는 중복된 state 관리 로직이 존재합니다.
-중복된 로직을 useInput 훅으로 분리해서 state 관리를 용이하게 하는 방법으로 코드를 개선하였습니다.
-
-### 최소 기능단위 컴포넌트 적용
-여러 컴포넌트에서 공통으로 사용되는 button, input을 재사용하기 위해 style을 props로 전달받을 수 있는 element 컴포넌트로 개선하였습니다.
-
-### axios interceptor를 통해 server단 에러 메시지 전역처리 
-서버에서 오는 에러 상태코드들을 axios.interceptor.response.use() 함수를 통해 window.alert()으로 전역 에러처리하였습니다.
-
-### PrivateRouter, AutoLogin 구현
-특정 모듈에서 useEffect 훅을 통해 조건에 따른 화면 전환을 한 부분을 router에서 PrivateRouter, AutoLogin 구현하여
-로그인 여부에따른 화면 이동 및 제한 기능을 구현, 개선하였습니다.
-
-### Token 모듈화
-반복되는 localStorage.getItem(), localStorage.setItem() 중복을 줄이기 위해 모듈화하여 코드의 중복을 개선하고 재사용성을 향상하였습니다.
-
-### 한줄 글자수 제한을 CSS에서 처리
-Todo 글자수가 넘치는 문제를 기존에는 slice()로 해결하였으나, 이를 CSS ellipsis로 처리하여 성능을 개선하였습니다.
 
 ## 🛠 기술 스택
 
@@ -71,14 +44,22 @@ Todo 글자수가 넘치는 문제를 기존에는 slice()로 해결하였으나
   <br>
 </div>
 
+
 ## 🏁 프로젝트 실행 방법
 
-- 해당 프로젝트를 로컬에서 실행하고 싶다면 하단의 절차를 따르면 됩니다.
-
+1. root폴더에 .env 파일을 생성합니다.
+```
+  REACT_APP_SERVER_URL=https://pre-onboarding-selection-task.shop
+```
+2. 의존성 패키지를 설치합니다.
 ```zsh
 $ yarn install
+```
+3. 프로젝트를 실행합니다.
+```zsh
 $ yarn start
 ```
+
 
 - 현재 repository를 클론한 뒤, 위 순서대로 입력하면 localhost:3000 포트에서 해당 코드가 실행됩니다.
 
@@ -113,6 +94,60 @@ $ yarn start
 
 - 해당 프로젝트는 vercel을 통해 배포하였습니다.
 - 상단 링크에 접속하시면 바로 Simple Todo를 이용할 수 있습니다.
+
+## 📦 파일 구조
+
+<details>
+<summary>파일 구조</summary>
+<div markdown="1">
+
+```
+📦src
+ ┣ 📂assets
+ ┃ ┣ 📜email.svg
+ ┃ ┣ 📜no_result_black.svg
+ ┃ ┗ 📜password.svg
+ ┣ 📂components
+ ┃ ┣ 📂auth
+ ┃ ┃ ┣ 📜AuthFrame.jsx
+ ┃ ┃ ┗ 📜Form.jsx
+ ┃ ┣ 📂shared
+ ┃ ┃ ┣ 📜Footer.jsx
+ ┃ ┃ ┣ 📜Header.jsx
+ ┃ ┃ ┗ 📜Layout.jsx
+ ┃ ┗ 📂todo
+ ┃ ┃ ┣ 📂todolist
+ ┃ ┃ ┃ ┣ 📜ReadTodo.jsx
+ ┃ ┃ ┃ ┣ 📜Todo.jsx
+ ┃ ┃ ┃ ┣ 📜TodoList.jsx
+ ┃ ┃ ┃ ┗ 📜UpdateTodo.jsx
+ ┃ ┃ ┣ 📜CreateTodo.jsx
+ ┃ ┃ ┗ 📜TodoContainer.jsx
+ ┣ 📂elements
+ ┃ ┣ 📜Button.jsx
+ ┃ ┗ 📜Input.jsx
+ ┣ 📂hooks
+ ┃ ┗ 📜useInput.js
+ ┣ 📂pages
+ ┃ ┣ 📜Auth.jsx
+ ┃ ┣ 📜NotFound.jsx
+ ┃ ┗ 📜TodoList.jsx
+ ┣ 📂routers
+ ┃ ┣ 📜PrivateRouter.jsx
+ ┃ ┗ 📜Routers.jsx
+ ┣ 📂shared
+ ┃ ┣ 📜GlobalStyle.jsx
+ ┃ ┣ 📜axios.jsx
+ ┃ ┗ 📜token.js
+ ┣ 📜App.js
+ ┣ 📜index.js
+ ┣ 📜reportWebVitals.js
+ ┗ 📜setupTests.js
+ ```
+
+</div>
+</details>
+
 
 ## ✨ 주요 기능
 
@@ -179,6 +214,35 @@ $ yarn start
   - 사용자가 `제출하기` 버튼을 누르면 완료 여부와 todo 내용 변경사항이 todo 리스트에 반영되고, 수정모드가 비활성화됩니다.
   - 사용자가 `취소하기` 버튼을 누르면 수정모드가 비활성화됩니다.
 - 만약 사용자가 로컬스토리지에 토큰이 없는 상태로 `/todo` 페이지에 접근하면 `/` 페이지로 리다이렉트됩니다.
+
+## 👍 Best Practice 선정 이유
+
+- 상태 코드를 사용한 오류 핸들링 부분이 좋습니다.
+- 파일의 기능이나 라우트에 의한 파일 구조가 잘 설계되어 있습니다.
+- 컴포넌트가 기능 단위로 세분화되어있어 상태값이 바뀔 때 마다 전체 페이지가 재렌더링 되는 현상을 막아 성능 최적화에 도움이 되었습니다.
+
+
+## ✏️ 개선 부분
+
+### useInput 커스텀 훅 적용
+- email, password, todo 수정 등 다양한 곳에서 input이 사용되고 있고 이 input들에는 중복된 state 관리 로직이 존재합니다.
+- 중복된 로직을 `useInput` 훅으로 분리해서 state 관리를 용이하게 하는 방법으로 코드를 개선하였습니다.
+
+### 최소 기능단위 컴포넌트 적용
+- 여러 컴포넌트에서 공통으로 사용되는 `button`, `input`을 재사용하기 위해 style을 props로 전달받을 수 있는 element 컴포넌트로 개선하였습니다.
+
+### axios interceptor를 통해 server단 에러 메시지 전역처리 
+- 서버에서 오는 에러 상태코드들을 `axios.interceptor.response.use()` 함수를 통해 `window.alert()`으로 전역 에러처리하였습니다.
+
+### PrivateRouter, AutoLogin 구현
+- 특정 모듈에서 `useEffect` 훅을 통해 조건에 따른 화면 전환을 한 부분을 router에서 `PrivateRouter`, `AutoLogin`으로 구현하여
+로그인 여부에 따른 화면 이동 및 제한 기능을 구현, 개선하였습니다.
+
+### Token 모듈화
+- 여러 컴포넌트에서 반복적으로 사용되는 `localStorage.getItem()`, `localStorage.setItem()`을 모듈화하여 코드의 중복을 개선하고 재사용성을 향상하였습니다.
+
+### 한줄 글자수 제한을 CSS에서 처리
+- Todo 글자수가 넘치는 문제를 기존에는 `slice()`로 해결하였으나, 이를 CSS `ellipsis`로 처리하여 성능을 개선하였습니다.
 
 ## 🗺 API 설계
 
