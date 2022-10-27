@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
-
 import { apis } from '../../shared/axios';
+import Button from '../../elements/Button';
 import ErrorMessage from '../../elements/ErrMsg';
 import { ReactComponent as Email } from '../../assets/email.svg';
 import { ReactComponent as Password } from '../../assets/password.svg';
@@ -148,9 +148,12 @@ const Form = (props) => {
           </StWrapper>
           {form.passwordErr && <StError>{form.passwordErr}</StError>}
         </StField>
-        <StButton type="submit" disabled={form.emailErr || form.passwordErr}>
-          {onSignIn ? '로그인하기' : '회원가입하기'}
-        </StButton>
+        <Button
+          text={onSignIn ? '로그인하기' : '회원가입하기'}
+          component="Form"
+          type="submit"
+          disabled={form.emailErr || form.passwordErr}
+        />
       </form>
     </>
   );
@@ -252,18 +255,4 @@ const StInput = styled.input`
 
 const StError = styled(StHelper)`
   color: #256ef1;
-`;
-
-const StButton = styled.button`
-  width: 329px;
-  height: 50px;
-  background: ${(props) => (!props.disabled ? '#256ef1' : '#a5a5a54a')};
-  border: ${(props) => (!props.disabled ? '1px solid #256ef1' : '1px solid #a5a5a54a')};
-  color: #ffffff;
-  border-radius: 6px;
-  transition: all 0.3s;
-  &:hover {
-    cursor: ${(props) => (!props.disabled ? 'pointer' : 'default')};
-    transform: ${(props) => (!props.disabled ? 'scale(1.05)' : 'none')};
-  }
 `;

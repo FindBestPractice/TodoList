@@ -1,89 +1,78 @@
-import { useState } from 'react'
-
+import { useState } from 'react';
 import styled from 'styled-components'
 import { Input } from '../../../elements/Input'
+import Button from '../../../elements/Button';
 
 // TODO assignment 5 todo 수정 기능 구현
-const UpdateTodo = ({
-  id,
-  todo,
-  isCompleted,
-  userId,
-  toggleUpdate,
-  updateTodo,
-}) => {
+const UpdateTodo = ({ id, todo, isCompleted, userId, toggleUpdate, updateTodo }) => {
   const [form, setForm] = useState({
     id,
     todo,
     isCompleted,
     userId,
     hasError: false,
-  })
+  });
 
   // form input field 값이 변화할 때마다 이를 반영하는 함수
   const changeHandler = (e) => {
-    const field = e.target.id
-    const value = e.target.value
+    const field = e.target.id;
+    const value = e.target.value;
     setForm((prev) => ({
       ...prev,
       [field]: value,
       hasError: !value,
-    }))
-  }
+    }));
+  };
 
   // 수정하기 모드 isCompleted 값 변경
   const toggleHandler = (e) => {
     setForm((prev) => ({
       ...prev,
       isCompleted: !prev.isCompleted,
-    }))
-  }
+    }));
+  };
 
   const submitHandler = (e) => {
     updateTodo({
       id,
       todo: form.todo,
       isCompleted: form.isCompleted,
-    })
-    toggleUpdate()
-  }
+    });
+    toggleUpdate();
+  };
 
   return (
     <>
       <StState>
         <StStatus>{!form.isCompleted ? '진행중' : '완료'}</StStatus>
-        <StToggle onClick={toggleHandler}>
-          {!form.isCompleted ? '완료로 변경' : '진행 중으로 변경'}
-        </StToggle>
+        <StToggle onClick={toggleHandler}>{!form.isCompleted ? '완료로 변경' : '진행 중으로 변경'}</StToggle>
       </StState>
       <Input value={form.todo} onChange={changeHandler} id="todo" size="updetaTodo" />
       {form.hasError && (
         <StError>수정하기 위해서는 할일을 기입해주셔야해요.</StError>
       )}
       <StButtons>
-        <StButton onClick={submitHandler} disabled={form.hasError}>
-          제출하기
-        </StButton>
-        <StButton onClick={toggleUpdate}>취소하기</StButton>
+        <Button text="제출하기기기기" component="ReadUpdateTodo" onClick={submitHandler} disabled={form.hasError} />
+        <Button text="수정하기기기기" component="ReadUpdateTodo" onClick={toggleUpdate} />
       </StButtons>
     </>
-  )
-}
+  );
+};
 
-export default UpdateTodo
+export default UpdateTodo;
 
 const StFont = styled.div`
   font-family: 'Noto Sans KR';
   font-style: normal;
   font-weight: 500;
   letter-spacing: -0.5px;
-`
+`;
 
 const StState = styled.div`
   display: flex;
   flex-direction: row;
   padding: 10px 0px;
-`
+`;
 
 const StStatus = styled(StFont)`
   width: 45px;
@@ -97,7 +86,7 @@ const StStatus = styled(StFont)`
   color: #256ef1;
   text-align: center;
   padding: 3px;
-`
+`;
 
 const StToggle = styled.button`
   background: transparent;
@@ -108,7 +97,7 @@ const StToggle = styled.button`
     text-decoration: underline;
     color: #256ef1;
   }
-`
+`;
 
 const StInput = styled.input`
   background: #ffffff;
@@ -123,32 +112,15 @@ const StInput = styled.input`
     outline: none;
     border: 1.2px solid #256ef1;
   }
-`
+`;
 
 const StError = styled(StFont)`
   font-size: 10px;
   line-height: 14px;
   color: #256ef1;
-`
+`;
 
 const StButtons = styled.div`
   display: flex;
   gap: 10px;
-`
-
-const StButton = styled.button`
-  width: calc(100% - 40px - 10px);
-  min-width: 65px;
-  height: 30px;
-  background: #f3f3f3;
-  border: none;
-  border-radius: 6px;
-  font-size: 0.8rem;
-  transition: all 0.3s;
-  &:hover {
-    cursor: ${(props) => (!props.disabled ? 'pointer' : 'cursor')};
-    transform: ${(props) => (!props.disabled ? 'scale(1.05)' : 'none')};
-    background: ${(props) => (!props.disabled ? '#256ef1' : '#f3f3f3')};
-    color: ${(props) => (!props.disabled ? '#ffffff' : 'none')};
-  }
-`
+`;

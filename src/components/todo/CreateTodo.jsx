@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import Button from '../../elements/Button';
 import { Input } from '../../elements/Input';
 
 // TODO useInput 변경 및 Input, Button 컴포넌트 분리
@@ -37,9 +38,7 @@ const CreateTodo = ({ createTodo }) => {
           size="addTodo"
         />
       </StField>
-      <StButton type="submit" onClick={submitHandler} disabled={!todo}>
-        추가하기
-      </StButton>
+      <Button text="추가하기" component="CreateTodo" onClick={submitHandler} disabled={!todo} />
     </StForm>
   );
 };
@@ -78,19 +77,5 @@ const StInput = styled.input`
   &:focus {
     outline: none;
     border: 1.2px solid #256ef1;
-  }
-`;
-
-const StButton = styled.button`
-  width: 90px;
-  height: 40px;
-  background: ${(props) => (!props.disabled ? '#256ef1' : '#a5a5a54a')};
-  border: ${(props) => (!props.disabled ? '1px solid #256ef1' : '1px solid #a5a5a54a')};
-  color: #ffffff;
-  border-radius: 6px;
-  transition: all 0.3s;
-  &:hover {
-    cursor: ${(props) => (!props.disabled ? 'pointer' : 'default')};
-    transform: ${(props) => (!props.disabled ? 'scale(1.05)' : 'none')};
   }
 `;
