@@ -1,8 +1,9 @@
-import { Navigate } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
+import { getToken } from '../shared/token';
 
-const PrivateRoute = (component) => {
-  const access = localStorage.getItem('token');
-  return access ? component : <Navigate to="/" />;
+const PrivateRoute = () => {
+  const token = getToken();
+  return token ? <Outlet /> : <Navigate to="/" />;
 };
 
 export default PrivateRoute;
