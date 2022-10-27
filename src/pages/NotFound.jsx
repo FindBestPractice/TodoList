@@ -1,12 +1,10 @@
-import Header from '../components/shared/Header'
-import Footer from '../components/shared/Footer'
+import Layout from '../components/shared/Layout'
 
 const NotFound = () => {
   return (
     <>
-      <Header />
+      <Layout />
       <>NotFound</>
-      <Footer />
     </>
   )
 }
