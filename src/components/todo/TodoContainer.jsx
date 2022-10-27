@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { apis } from '../../shared/axios';
+import { getToken } from '../../shared/token';
 import CreateTodo from './CreateTodo';
 import TodoList from './todolist/TodoList';
 
@@ -45,7 +45,7 @@ const TodoContainer = () => {
   };
 
   useEffect(() => {
-    if (localStorage.getItem('AccessToken')) {
+    if (getToken()) {
       getTodos();
     }
   }, []);

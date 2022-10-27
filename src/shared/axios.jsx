@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { getToken } from './token';
 
 const api = axios.create({
   baseURL: process.env.REACT_APP_SERVER_URL,
@@ -10,7 +11,7 @@ const api = axios.create({
 // interceptor 통해 로그인/회원가입을 제외한 모든 API 요청에 JWT 헤더에 포함시킴
 api.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem('AccessToken');
+    const token = getToken();
     if (token) config.headers.Authorization = `Bearer ${token}`;
     return config;
   },

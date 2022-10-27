@@ -1,11 +1,12 @@
 import { useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import { apis } from '../../shared/axios';
 import Button from '../../elements/Button';
 import { ReactComponent as Email } from '../../assets/email.svg';
 import { ReactComponent as Password } from '../../assets/password.svg';
 import { Input } from '../../elements/Input';
+import { setToken } from '../../shared/token';
 
 const Form = (props) => {
   const navigate = useNavigate();
@@ -82,6 +83,7 @@ const Form = (props) => {
 
     // 응답으로 받아온 토큰 로컬 스토리지 저장
     const { access_token } = resp.data;
+    setToken(access_token);
     localStorage.setItem('AccessToken', access_token);
     // /todo로 이동
     navigate('/todo');
