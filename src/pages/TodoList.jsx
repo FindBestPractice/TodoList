@@ -1,15 +1,13 @@
-import Header from '../components/shared/Header';
-import TodoListFrame from '../components/todolist/TodoListFrame';
-import Footer from '../components/shared/Footer';
+import Layout from '../components/shared/Layout'
+import TodoContainer from '../components/todo/TodoContainer'
 
 const TodoList = () => {
   return (
     <>
-      <Header />
-      <TodoListFrame />
-      <Footer />
+      <Layout />
+      <TodoContainer />
     </>
-  );
-};
+  )
+}
 
-export default TodoList;
+export default TodoList

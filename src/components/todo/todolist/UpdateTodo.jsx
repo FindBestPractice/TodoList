@@ -21,13 +21,8 @@ const UpdateTodo = ({
 
   // form input field 값이 변화할 때마다 이를 반영하는 함수
   const changeHandler = (e) => {
-<<<<<<< HEAD
-    const field = e.target.id;
-    const value = e.target.value;
-=======
     const field = e.target.id
     const value = e.target.value
->>>>>>> 8453780378d3a61e0ed5b2c50d2552f24397e111
     setForm((prev) => ({
       ...prev,
       [field]: value,
@@ -56,12 +51,14 @@ const UpdateTodo = ({
     <>
       <StState>
         <StStatus>{!form.isCompleted ? '진행중' : '완료'}</StStatus>
-        <StToggle onClick={toggleHandler}>{!form.isCompleted ? '완료로 변경' : '진행 중으로 변경'}</StToggle>
+        <StToggle onClick={toggleHandler}>
+          {!form.isCompleted ? '완료로 변경' : '진행 중으로 변경'}
+        </StToggle>
       </StState>
       <StInput value={form.todo} onChange={changeHandler} id="todo" />
-      {form.hasError ? (
+      {form.hasError && (
         <StError>수정하기 위해서는 할일을 기입해주셔야해요.</StError>
-      ) : null}
+      )}
       <StButtons>
         <StButton onClick={submitHandler} disabled={form.hasError}>
           제출하기
