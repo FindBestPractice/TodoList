@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import Button from '../../elements/Button';
+import { Input } from '../../elements/Input';
 
 // TODO useInput 변경 및 Input, Button 컴포넌트 분리
 // TODO Assignment 4: todo 입력창에 입력시 todoList 추가
@@ -28,13 +29,13 @@ const CreateTodo = ({ createTodo }) => {
   return (
     <StForm onsubmit={submitHandler}>
       <StField>
-        <StInput
+        <Input
           type="text"
           id="todo"
           value={todo}
           placeholder="할 일을 자유롭게 추가해보세요!"
           onChange={changeHandler}
-          required
+          size="addTodo"
         />
       </StField>
       <Button text="추가하기" component="CreateTodo" onClick={submitHandler} disabled={!todo} />
