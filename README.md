@@ -34,10 +34,20 @@ email, password, todo 수정 등 다양한 곳에서 input이 사용되고 있�
 중복된 로직을 useInput 훅으로 분리해서 state 관리를 용이하게 하는 방법으로 코드를 개선하였습니다.
 
 ### 최소 기능단위 컴포넌트 적용
-여러곳에서 쓰이는 button, input을 재사용 하기위해 style을 props로 전달받을 수 있는 element 컴포넌트로 개선하였습니다.
+여러 컴포넌트에서 공통으로 사용되는 button, input을 재사용하기 위해 style을 props로 전달받을 수 있는 element 컴포넌트로 개선하였습니다.
 
-### server error 핸들러 분리
-서버에서 받는 상태 코드로 사용자에게 보여지는 오류 메시지를 다루는 함수를 분리하여 개선하였습니다.
+### axios interceptor를 통해 server단 에러 메시지 전역처리 
+서버에서 오는 에러 상태코드들을 axios.interceptor.response.use() 함수를 통해 window.alert()으로 전역 에러처리하였습니다.
+
+### PrivateRouter, AutoLogin 구현
+특정 모듈에서 useEffect 훅을 통해 조건에 따른 화면 전환을 한 부분을 router에서 PrivateRouter, AutoLogin 구현하여
+로그인 여부에따른 화면 이동 및 제한 기능을 구현, 개선하였습니다.
+
+### Token 모듈화
+반복되는 localStorage.getItem(), localStorage.setItem() 중복을 줄이기 위해 모듈화하여 코드의 중복을 개선하고 재사용성을 향상하였습니다.
+
+### 한줄 글자수 제한을 CSS에서 처리
+Todo 글자수가 넘치는 문제를 기존에는 slice()로 해결하였으나, 이를 CSS ellipsis로 처리하여 성능을 개선하였습니다.
 
 ## 🛠 기술 스택
 
@@ -53,12 +63,9 @@ email, password, todo 수정 등 다양한 곳에서 input이 사용되고 있�
   <br>
   
   <img src="https://img.shields.io/badge/vs_code-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white">
-  <img src="https://img.shields.io/badge/yarn-2C8EBB?style=for-the-badge&logo=yarn&logoColor=white">
   <img src="https://img.shields.io/badge/react_router_dom-CA4245?style=for-the-badge&logo=reactrouter&logoColor=white">
   <br>
   
-  <img src="https://img.shields.io/badge/aws_route53-232F3E?style=for-the-badge&logo=vercel&logoColor=white"> 
-  <img src="https://img.shields.io/badge/figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white">
   <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
   <img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white">
   <br>
