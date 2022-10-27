@@ -1,5 +1,5 @@
-import Header from './Header'
-import Footer from './Footer'
+import Header from './Header';
+import Footer from './Footer';
 
 const Layout = () => {
   return (
@@ -7,7 +7,7 @@ const Layout = () => {
       <Header />
       <Footer />
     </>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;

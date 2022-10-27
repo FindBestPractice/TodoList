@@ -3,8 +3,6 @@ import styled from 'styled-components';
 import Button from '../../elements/Button';
 import { Input } from '../../elements/Input';
 
-// TODO useInput 변경 및 Input, Button 컴포넌트 분리
-// TODO Assignment 4: todo 입력창에 입력시 todoList 추가
 const CreateTodo = ({ createTodo }) => {
   const [todo, setTodo] = useState('');
 

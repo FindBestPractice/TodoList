@@ -1,5 +1,5 @@
-import Layout from '../components/shared/Layout'
-import TodoContainer from '../components/todo/TodoContainer'
+import Layout from '../components/shared/Layout';
+import TodoContainer from '../components/todo/TodoContainer';
 
 const TodoList = () => {
   return (
@@ -7,7 +7,7 @@ const TodoList = () => {
       <Layout />
       <TodoContainer />
     </>
-  )
-}
+  );
+};
 
-export default TodoList
+export default TodoList;

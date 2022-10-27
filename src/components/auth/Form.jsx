@@ -9,7 +9,7 @@ import { Input } from '../../elements/Input';
 import useInput from '../../hooks/useInput';
 import { setToken } from '../../shared/token';
 
-const Form = (props) => {
+const Form = () => {
   const navigate = useNavigate();
   const [email, emailHandler, emailIsVaild, emailErrMsg] = useInput('email');
   const [password, passwordHandler, passwordIsVaild, passwordErrMsg] = useInput('password');
@@ -17,50 +17,9 @@ const Form = (props) => {
   // 초기 signin 탭에서 시작
   const [onSignIn, setOnSignIn] = useState(true);
 
-  // form 관련 상태값
-  const [form, setForm] = useState({
-    email: '',
-    password: '',
-    emailErr: '',
-    passwordErr: '',
-  });
-
   // signin, signup 탭 간 전환 함수
   const toggleTab = (e) => {
     setOnSignIn((prev) => !prev);
-
-    // 초기화
-    setForm({
-      email: '',
-      password: '',
-      emailErr: '',
-      passwordErr: '',
-    });
-  };
-
-  // form input field 값이 변화할 때마다 이를 반영하는 함수
-  const changeHandler = (e) => {
-    const field = e.target.id;
-    const value = e.target.value;
-    const fieldErr = `${e.target.id}Err`;
-    const hasErr = checkErr(field, value);
-    setForm((prev) => ({
-      ...prev,
-      [field]: value,
-      [fieldErr]: hasErr,
-    }));
-  };
-
-  // TODO Assignment 1: 이메일과 비밀번호 유효성 검사 기능
-  // 실시간 email, password field 유효성 검사
-  const checkErr = (field, value) => {
-    if (field === 'email') {
-      return !value.includes('@') ? '이메일은 @를 반드시 포함해야합니다.' : '';
-    }
-    if (field === 'password') {
-      return value.length < 8 ? '비밀번호는 반드시 8자 이상이어야합니다' : '';
-    }
-    return '';
   };
 
   // 회원가입하기/ 로그인하기 버튼 클릭 시 처리 함수
@@ -68,7 +27,6 @@ const Form = (props) => {
     e.preventDefault();
 
     let resp = {};
-    // TODO Assignment 2: 로그인 API 호출하고 올바른 응답 받으면 /todo 경로 이동
     // 로그인 API 호출
     if (onSignIn) resp = await apis.signIn({ email, password });
     // 회원 가입 API 호출
@@ -77,7 +35,6 @@ const Form = (props) => {
     // 응답으로 받아온 토큰 로컬 스토리지 저장
     const { access_token } = resp.data;
     setToken(access_token);
-    localStorage.setItem('AccessToken', access_token);
     // /todo로 이동
     navigate('/todo');
 
@@ -92,7 +49,7 @@ const Form = (props) => {
         <StLink onClick={toggleTab}>{onSignIn ? '회원가입' : '로그인'}</StLink>
       </StHeader>
       <form onSubmit={submitHandler}>
-        <StField hasError={form.emailErr}>
+        <StField hasError={!emailIsVaild}>
           <StLabel htmlFor="email">이메일</StLabel>
           <StHelper>@을 포함한 형태의 이메일을 기입해주세요.</StHelper>
           <StWrapper>
@@ -113,7 +70,7 @@ const Form = (props) => {
         <StField>
           <StLabel htmlFor="password">비밀번호</StLabel>
           <StHelper>8자 이상의 비밀번호를 기입해주세요.</StHelper>
-          <StWrapper hasError={form.passwordErr}>
+          <StWrapper hasError={!passwordIsVaild}>
             <StIcon>
               <Password />
             </StIcon>

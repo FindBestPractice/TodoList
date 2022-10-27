@@ -1,4 +1,4 @@
-import Layout from '../components/shared/Layout'
+import Layout from '../components/shared/Layout';
 
 const NotFound = () => {
   return (
@@ -6,7 +6,7 @@ const NotFound = () => {
       <Layout />
       <>NotFound</>
     </>
-  )
-}
+  );
+};
 
-export default NotFound
+export default NotFound;

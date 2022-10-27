@@ -6,7 +6,6 @@ import { getToken } from '../../shared/token';
 import CreateTodo from './CreateTodo';
 import TodoList from './todolist/TodoList';
 
-// TODO Assignment 4: /todo 페이지 만들기
 const TodoContainer = () => {
   const [todos, setTodos] = useState([]);
 
