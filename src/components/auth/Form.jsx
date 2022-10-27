@@ -7,9 +7,12 @@ import ErrorMessage from '../../elements/ErrMsg';
 import { ReactComponent as Email } from '../../assets/email.svg';
 import { ReactComponent as Password } from '../../assets/password.svg';
 import { Input } from '../../elements/Input';
+import useInput from '../../hooks/useInput';
 
 const Form = (props) => {
   const navigate = useNavigate();
+  const [email, emailHandler, emailIsVaild, emailErrMsg] = useInput('email');
+  const [password, passwordHandler, passwordIsVaild, passwordErrMsg] = useInput('password');
 
   // TODO Assignment 3: 로그인 여부에 따른 리다이렉트 처리
   const checkToken = () => {
@@ -80,19 +83,9 @@ const Form = (props) => {
     let resp = {};
     // TODO Assignment 2: 로그인 API 호출하고 올바른 응답 받으면 /todo 경로 이동
     // 로그인 API 호출
-    if (onSignIn) {
-      resp = await apis.signIn({
-        email: form.email,
-        password: form.password,
-      });
-    }
+    if (onSignIn) resp = await apis.signIn({ email, password });
     // 회원 가입 API 호출
-    else {
-      resp = await apis.signUp({
-        email: form.email,
-        password: form.password,
-      });
-    }
+    else resp = await apis.signUp({ email, password });
 
     // 응답으로 받아온 토큰 로컬 스토리지 저장
     const { access_token, statusCode } = resp.data;
@@ -130,12 +123,12 @@ const Form = (props) => {
               type="text"
               id="email"
               placeholder="username@address.com"
-              onChange={changeHandler}
-              value={form.email}
+              onChange={emailHandler}
+              value={email}
               func="auth"
             />
           </StWrapper>
-          {form.emailErr && <StError>{form.emailErr}</StError>}
+          {emailIsVaild === false && <StError>{emailErrMsg}</StError>}
         </StField>
         <StField>
           <StLabel htmlFor="password">비밀번호</StLabel>
@@ -144,15 +137,22 @@ const Form = (props) => {
             <StIcon>
               <Password />
             </StIcon>
-            <Input type="password" id="password" placeholder="*****" onChange={changeHandler} value={form.password} func="auth" />
+            <Input
+              type="password"
+              id="password"
+              placeholder="*****"
+              onChange={passwordHandler}
+              value={password}
+              func="auth"
+            />
           </StWrapper>
-          {form.passwordErr && <StError>{form.passwordErr}</StError>}
+          {passwordIsVaild === false && <StError>{passwordErrMsg}</StError>}
         </StField>
         <Button
           text={onSignIn ? '로그인하기' : '회원가입하기'}
           component="Form"
           type="submit"
-          disabled={form.emailErr || form.passwordErr}
+          disabled={!emailIsVaild || !passwordIsVaild}
         />
       </form>
     </>
