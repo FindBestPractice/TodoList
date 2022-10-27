@@ -132,7 +132,7 @@ const Form = (props) => {
               placeholder="username@address.com"
               onChange={changeHandler}
               value={form.email}
-              size="auth"
+              func="auth"
             />
           </StWrapper>
           {form.emailErr && <StError>{form.emailErr}</StError>}
@@ -144,7 +144,7 @@ const Form = (props) => {
             <StIcon>
               <Password />
             </StIcon>
-            <Input type="password" id="password" placeholder="*****" onChange={changeHandler} value={form.password} size="auth" />
+            <Input type="password" id="password" placeholder="*****" onChange={changeHandler} value={form.password} func="auth" />
           </StWrapper>
           {form.passwordErr && <StError>{form.passwordErr}</StError>}
         </StField>
@@ -236,21 +236,6 @@ const StIcon = styled.div`
   position: absolute;
   left: 25px;
   bottom: 10px;
-`;
-
-const StInput = styled.input`
-  background: #fafafa;
-  border: 1.2px solid #dadada;
-  border-radius: 6px;
-  width: 332px;
-  height: 50px;
-  margin-top: 6px;
-  padding: 11px 14px 11px 60px;
-  &:hover,
-  &:focus {
-    outline: none;
-    border: 1.2px solid #256ef1;
-  }
 `;
 
 const StError = styled(StHelper)`
