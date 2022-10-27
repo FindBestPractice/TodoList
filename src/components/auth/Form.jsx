@@ -10,19 +10,6 @@ import { Input } from '../../elements/Input';
 const Form = (props) => {
   const navigate = useNavigate();
 
-  // TODO Assignment 3: 로그인 여부에 따른 리다이렉트 처리
-  const checkToken = () => {
-    if (!localStorage.getItem('AccessToken')) {
-      return;
-    }
-    // 토큰 존재하는 경우 /todo로 리다이렉트
-    navigate('/todo');
-  };
-
-  useEffect(() => {
-    checkToken();
-  }, []);
-
   // 초기 signin 탭에서 시작
   const [onSignIn, setOnSignIn] = useState(true);
 
