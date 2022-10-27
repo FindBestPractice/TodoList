@@ -3,11 +3,11 @@ import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
 import { apis } from '../../shared/axios'
-import TodoForm from './TodoForm'
-import Lists from './Lists'
+import CreateTodo from './CreateTodo'
+import TodoList from './todolist/TodoList'
 
 // TODO Assignment 4: /todo 페이지 만들기
-const TodoListFrame = () => {
+const TodoContainer = () => {
   const navigate = useNavigate()
 
   const [todos, setTodos] = useState([])
@@ -65,13 +65,13 @@ const TodoListFrame = () => {
 
   return (
     <StLayout>
-      <TodoForm createTodo={addTodo} />
-      <Lists todos={todos} updateTodo={updateTodo} deleteTodo={deleteTodo} />
+      <CreateTodo createTodo={addTodo} />
+      <TodoList todos={todos} updateTodo={updateTodo} deleteTodo={deleteTodo} />
     </StLayout>
   )
 }
 
-export default TodoListFrame
+export default TodoContainer
 
 const StLayout = styled.div`
   width: 100vw;

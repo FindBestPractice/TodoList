@@ -1,11 +1,11 @@
 import Layout from '../components/shared/Layout'
-import TodoListFrame from '../components/todolist/TodoListFrame'
+import TodoContainer from '../components/todo/TodoContainer'
 
 const TodoList = () => {
   return (
     <>
       <Layout />
-      <TodoListFrame />
+      <TodoContainer />
     </>
   )
 }
