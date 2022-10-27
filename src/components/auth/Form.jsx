@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { apis } from '../../shared/axios';
 import Button from '../../elements/Button';
-import ErrorMessage from '../../elements/ErrMsg';
 import { ReactComponent as Email } from '../../assets/email.svg';
 import { ReactComponent as Password } from '../../assets/password.svg';
 import { Input } from '../../elements/Input';
@@ -95,19 +94,11 @@ const Form = (props) => {
     }
 
     // 응답으로 받아온 토큰 로컬 스토리지 저장
-    const { access_token, statusCode } = resp.data;
+    const { access_token } = resp.data;
+    localStorage.setItem('AccessToken', access_token);
+    // /todo로 이동
+    navigate('/todo');
 
-    // TODO interceptor try catch
-    // error코드가 있다면 statusResult를 이용하여 form에 저장
-    const statusResult = ErrorMessage(statusCode);
-    if (statusResult) {
-      setForm((prev) => ({ ...prev, ...statusResult }));
-    } else {
-      // 올바른 응답일시 로컬 스토리지에 토큰 값 저장
-      localStorage.setItem('AccessToken', access_token);
-      // // /todo로 이동
-      navigate('/todo');
-    }
     return;
   };
 
@@ -144,7 +135,14 @@ const Form = (props) => {
             <StIcon>
               <Password />
             </StIcon>
-            <Input type="password" id="password" placeholder="*****" onChange={changeHandler} value={form.password} func="auth" />
+            <Input
+              type="password"
+              id="password"
+              placeholder="*****"
+              onChange={changeHandler}
+              value={form.password}
+              func="auth"
+            />
           </StWrapper>
           {form.passwordErr && <StError>{form.passwordErr}</StError>}
         </StField>

@@ -20,7 +20,19 @@ api.interceptors.request.use(
 // interceptor 통해 응답 에러 처리
 api.interceptors.response.use(
   (config) => config,
-  (error) => error.response
+  (error) => {
+    const statusCode = error.response.data.statusCode;
+
+    if (statusCode === 400) {
+      alert('이미 가입된 이메일입니다.');
+    }
+    if (statusCode === 401) {
+      alert('잘못된 비밀번호입니다.');
+    }
+    if (statusCode === 404) {
+      alert('가입되지 않은 이메일입니다.');
+    }
+  }
 );
 
 // 전역 axios 사용
