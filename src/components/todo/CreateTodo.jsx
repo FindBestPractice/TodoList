@@ -1,28 +1,29 @@
-import { useState } from 'react'
-import styled from 'styled-components'
+import { useState } from 'react';
+import styled from 'styled-components';
+import Button from '../../elements/Button';
 
 // TODO useInput 변경 및 Input, Button 컴포넌트 분리
 // TODO Assignment 4: todo 입력창에 입력시 todoList 추가
 const CreateTodo = ({ createTodo }) => {
-  const [todo, setTodo] = useState('')
+  const [todo, setTodo] = useState('');
 
   // input field의 변경 내용 반영
   const changeHandler = (e) => {
-    const value = e.target.value
-    setTodo(value)
-  }
+    const value = e.target.value;
+    setTodo(value);
+  };
 
   // 사용자가 제출 버튼을 눌렀을 때 신규 todo를 추가하는 함수
   const submitHandler = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     createTodo({
       todo,
-    })
+    });
 
     // form 초기화
-    setTodo('')
-  }
+    setTodo('');
+  };
 
   return (
     <StForm onsubmit={submitHandler}>
@@ -36,14 +37,12 @@ const CreateTodo = ({ createTodo }) => {
           required
         />
       </StField>
-      <StButton type="submit" onClick={submitHandler} disabled={!todo}>
-        추가하기
-      </StButton>
+      <Button text="추가하기" component="CreateTodo" onClick={submitHandler} disabled={!todo} />
     </StForm>
-  )
-}
+  );
+};
 
-export default CreateTodo
+export default CreateTodo;
 
 const StForm = styled.form`
   display: flex;
@@ -57,14 +56,14 @@ const StForm = styled.form`
 
   background: rgba(236, 236, 236, 0.3);
   box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.04);
-`
+`;
 
 const StField = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 10px;
-`
+`;
 
 const StInput = styled.input`
   background: #ffffff;
@@ -78,19 +77,4 @@ const StInput = styled.input`
     outline: none;
     border: 1.2px solid #256ef1;
   }
-`
-
-const StButton = styled.button`
-  width: 90px;
-  height: 40px;
-  background: ${(props) => (!props.disabled ? '#256ef1' : '#a5a5a54a')};
-  border: ${(props) =>
-    !props.disabled ? '1px solid #256ef1' : '1px solid #a5a5a54a'};
-  color: #ffffff;
-  border-radius: 6px;
-  transition: all 0.3s;
-  &:hover {
-    cursor: ${(props) => (!props.disabled ? 'pointer' : 'default')};
-    transform: ${(props) => (!props.disabled ? 'scale(1.05)' : 'none')};
-  }
-`
+`;
