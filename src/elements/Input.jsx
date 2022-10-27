@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-export const Input = ({ id, label, placeholder, size, type, value, disabled, onChange }) => {
+export const Input = ({ id, label, placeholder, func, type, value, disabled, onChange }) => {
   return (
     <>
       {/* label은 선택사항 */}
@@ -10,7 +10,7 @@ export const Input = ({ id, label, placeholder, size, type, value, disabled, onC
         id={id}
         placeholder={placeholder}
         type={type}
-        size={size}
+        func={func}
         value={value}
         disabled={disabled}
         onChange={onChange}
@@ -30,8 +30,8 @@ const StLabel = styled.label`
 `;
 
 const StInput = styled.input`
-  ${({ size }) =>
-    size === 'auth' &&
+  ${({ func }) =>
+    func === 'auth' &&
     css`
       padding: 11px 14px 11px 60px;
       background: #fafafa;
@@ -39,8 +39,8 @@ const StInput = styled.input`
       width: 332px;
       margin-top: 6px;
     `}
-  ${({ size }) =>
-    size === 'addTodo' &&
+  ${({ func }) =>
+    func === 'addTodo' &&
     css`
       padding: 11px 14px 11px 14px;
       background: #ffffff;
@@ -48,8 +48,8 @@ const StInput = styled.input`
       width: 332px;
     `}
 
-  ${({ size }) =>
-    size === 'updetaTodo' &&
+  ${({ func }) =>
+    func === 'updateTodo' &&
     css`
       padding: 11px 14px 11px 14px;
       background: #ffffff;

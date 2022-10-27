@@ -35,7 +35,7 @@ const CreateTodo = ({ createTodo }) => {
           value={todo}
           placeholder="할 일을 자유롭게 추가해보세요!"
           onChange={changeHandler}
-          size="addTodo"
+          func="addTodo"
         />
       </StField>
       <Button text="추가하기" component="CreateTodo" onClick={submitHandler} disabled={!todo} />
@@ -64,18 +64,4 @@ const StField = styled.div`
   flex-direction: row;
   align-items: center;
   gap: 10px;
-`;
-
-const StInput = styled.input`
-  background: #ffffff;
-  border: 1.2px solid #dadada;
-  border-radius: 6px;
-  width: 332px;
-  height: 40px;
-  padding: 11px 14px 11px 14px;
-  &:hover,
-  &:focus {
-    outline: none;
-    border: 1.2px solid #256ef1;
-  }
 `;
