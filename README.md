@@ -1,11 +1,43 @@
 # 원티드 프리온보딩 프론트엔드 - 선발 과제
 
-해당 레포지토리는 원티스 프리온보딩 선발 과제로 로그인/회원가입 기능이 있는 간략한 Todo List를 구현하였습니다.
+원티드 프리온보딩 프론트엔드 5팀 find-best-todolist입니다.<br>
+해당 레포지토리는 원티드 프리온보딩 1차 과제로 로그인/회원가입 기능이 있는 간략한 Todo List입니다.<br>
 해당 프로젝트에서는 원티드에서 제공한 [API]('https://github.com/walking-sunset/selection-task') 를 사용하였습니다.
 
 ## 📅 프로젝트 기간
 
-기간 : 2022년 10월 11일 ~ 2022년 10월 12일
+기간 : 2022년 10월 26일 ~ 2022년 10월 27일
+
+## 👥 팀원 소개
+
+| 이름        | github                           |
+| --------------- |  -------------------------------- |
+| 류승연 (팀장)   | https://github.com/seungyeon-rr  |
+| 공은채 (부팀장) | https://github.com/ericagong     |
+| 박지현          | https://github.com/hyoniiii      |
+| 배창현          | https://github.com/baechanghyeon |
+| 이원준          | https://github.com/dldnjswns31   |
+| 임연주          | https://github.com/yeondooo      |
+| 지재영          | https://github.com/jaeyeong815   |
+| 차혜인          | https://github.com/hyeincha      |
+
+## Best Practice 선정 이유
+
+- 상태 코드를 사용한 오류 핸들링 부분이 좋습니다.
+- 파일의 기능이나 라우트에 의한 파일 구조가 잘 설계되어 있습니다.
+- 컴포넌트가 기능 단위로 세분화되어있어 상태값이 바뀔 때 마다 전체 페이지가 재렌더링 되는 현상을 막아 성능 최적화에 도움이 되었습니다.
+
+## 개선 부분
+
+### useInput 커스텀 훅 적용
+email, password, todo 수정 등 다양한 곳에서 input이 사용되고 있고 이 input들에는 중복된 state 관리 로직이 존재합니다.
+중복된 로직을 useInput 훅으로 분리해서 state 관리를 용이하게 하는 방법으로 코드를 개선하였습니다.
+
+### 최소 기능단위 컴포넌트 적용
+여러곳에서 쓰이는 button, input을 재사용 하기위해 style을 props로 전달받을 수 있는 element 컴포넌트로 개선하였습니다.
+
+### server error 핸들러 분리
+서버에서 받는 상태 코드로 사용자에게 보여지는 오류 메시지를 다루는 함수를 분리하여 개선하였습니다.
 
 ## 🛠 기술 스택
 
@@ -49,6 +81,10 @@ $ yarn start
     "axios": "^1.1.2",
     "react-router-dom": "^6.4.2",
     "styled-components": "^5.3.6",
+    "eslint": "^8.26.0",
+    "eslint-config-prettier": "^8.5.0",
+    "husky": "^8.0.1",
+    "prettier": "^2.7.1"
 ```
 
 <details>
@@ -56,14 +92,17 @@ $ yarn start
 <div markdown="1">
 - axios : 서버와 비동기 통신<br>
 - styled-components : 스타일 적용<br>
-- react-router-dom: 라우터 적용<br>
+- react-router-dom : 라우터 적용<br>
+- eslint : 팀원간 코드 컨벤션 통일<br>
+- prettier : 팀원간 코드 포맷 통일<br>
+- husky : Git Hooks 적용<br>
 </div>
 </details>
 
 ## 🔗 배포 링크
 
-[Simple Todo](https://wanted-pre-onboarding-frontend-seven.vercel.app)
-[https://wanted-pre-onboarding-frontend-seven.vercel.app]
+[Simple Todo](https://find-best-todolist.vercel.app/)
+[find-best-todolist.vercel.app]
 
 - 해당 프로젝트는 vercel을 통해 배포하였습니다.
 - 상단 링크에 접속하시면 바로 Simple Todo를 이용할 수 있습니다.
