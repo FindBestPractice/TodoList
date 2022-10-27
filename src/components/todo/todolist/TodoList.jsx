@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 import Todo from './Todo'
 
-// TODO Assignment 4: todoList 페이지에는 내용과 완료 여부 표시
+// Assignment 4: todoList 페이지에는 내용과 완료 여부 표시
 const TodoList = ({ todos, updateTodo, deleteTodo }) => {
   const workingList = todos.filter((todo) => !todo.isCompleted)
   const doneList = todos.filter((todo) => todo.isCompleted)

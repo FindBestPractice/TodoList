@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-// TODO assignment 5 todo 삭제 기능 구현
+// Assignment 5 todo 삭제 기능 구현
 const ReadTodo = ({ id, todo, isCompleted, toggleUpdate, deleteTodo }) => {
   // todo 읽기 모드에서 삭제 API 호출
   const deleteHandler = () => {
@@ -12,7 +12,6 @@ const ReadTodo = ({ id, todo, isCompleted, toggleUpdate, deleteTodo }) => {
   return (
     <>
       <StStatus>{isCompleted ? '완료' : '진행중'}</StStatus>
-      {/* <StTodo>{todo?.length <= 28 ? todo : todo?.slice(0, 26).concat('...')}</StTodo> */}
       <StTodo>{todo}</StTodo>
       <StButtons>
         <StButton onClick={toggleUpdate}>수정하기</StButton>
