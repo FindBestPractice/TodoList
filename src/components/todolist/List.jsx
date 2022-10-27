@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import Todo from './todo/Todo'
+import Todo from './Todo'
 
 const List = ({ list, updateTodo, deleteTodo }) => {
 <<<<<<< HEAD
