@@ -1,15 +1,22 @@
-// TODO useInput hook 개량
-// input, validation 추가
 import { useState } from 'react';
 
-const useInput = (initialValue) => {
+export const vaildTodo = (value) => value !== '';
+export const validEmail = (value) => value.includes('@');
+export const validPassword = (value) => !(value.length < 8);
+
+const useInput = (type, initialValue) => {
   const [value, setValue] = useState(initialValue ? initialValue : '');
+  let isValid = false;
 
   const inputHandler = (e) => {
     setValue(e.target.value);
   };
 
-  return [value, inputHandler, setValue];
+  if (type === 'todo') isValid = vaildTodo(value);
+  if (type === 'email') isValid = validEmail(value);
+  if (type === 'password') isValid = validPassword(value);
+
+  return [value, inputHandler, isValid, setValue];
 };
 
 export default useInput;

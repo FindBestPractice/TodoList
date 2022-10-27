@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import styled from 'styled-components'
+import { Input } from '../../../elements/Input'
 
 // TODO assignment 5 todo 수정 기능 구현
 const UpdateTodo = ({
@@ -55,7 +56,7 @@ const UpdateTodo = ({
           {!form.isCompleted ? '완료로 변경' : '진행 중으로 변경'}
         </StToggle>
       </StState>
-      <StInput value={form.todo} onChange={changeHandler} id="todo" />
+      <Input value={form.todo} onChange={changeHandler} id="todo" size="updetaTodo" />
       {form.hasError && (
         <StError>수정하기 위해서는 할일을 기입해주셔야해요.</StError>
       )}

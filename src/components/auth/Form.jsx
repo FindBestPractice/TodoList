@@ -6,6 +6,7 @@ import { apis } from '../../shared/axios';
 import ErrorMessage from '../../elements/ErrMsg';
 import { ReactComponent as Email } from '../../assets/email.svg';
 import { ReactComponent as Password } from '../../assets/password.svg';
+import { Input } from '../../elements/Input';
 
 const Form = (props) => {
   const navigate = useNavigate();
@@ -107,7 +108,6 @@ const Form = (props) => {
       // // /todo로 이동
       navigate('/todo');
     }
-
     return;
   };
 
@@ -126,12 +126,13 @@ const Form = (props) => {
             <StIcon>
               <Email />
             </StIcon>
-            <StInput
+            <Input
               type="text"
               id="email"
               placeholder="username@address.com"
               onChange={changeHandler}
               value={form.email}
+              size="auth"
             />
           </StWrapper>
           {form.emailErr && <StError>{form.emailErr}</StError>}
@@ -143,7 +144,7 @@ const Form = (props) => {
             <StIcon>
               <Password />
             </StIcon>
-            <StInput type="password" id="password" placeholder="*****" onChange={changeHandler} value={form.password} />
+            <Input type="password" id="password" placeholder="*****" onChange={changeHandler} value={form.password} size="auth" />
           </StWrapper>
           {form.passwordErr && <StError>{form.passwordErr}</StError>}
         </StField>
