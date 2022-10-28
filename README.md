@@ -108,37 +108,37 @@ $ yarn start
  ┃ ┣ 📜no_result_black.svg
  ┃ ┗ 📜password.svg
  ┣ 📂components
- ┃ ┣ 📂auth
- ┃ ┃ ┣ 📜AuthFrame.jsx
- ┃ ┃ ┗ 📜Form.jsx
- ┃ ┣ 📂shared
- ┃ ┃ ┣ 📜Footer.jsx
- ┃ ┃ ┣ 📜Header.jsx
- ┃ ┃ ┗ 📜Layout.jsx
- ┃ ┗ 📂todo
- ┃ ┃ ┣ 📂todolist
- ┃ ┃ ┃ ┣ 📜ReadTodo.jsx
- ┃ ┃ ┃ ┣ 📜Todo.jsx
- ┃ ┃ ┃ ┣ 📜TodoList.jsx
- ┃ ┃ ┃ ┗ 📜UpdateTodo.jsx
- ┃ ┃ ┣ 📜CreateTodo.jsx
- ┃ ┃ ┗ 📜TodoContainer.jsx
- ┣ 📂elements
- ┃ ┣ 📜Button.jsx
- ┃ ┗ 📜Input.jsx
+ ┃ ┣ 📂auth                 // 사용자(유저인증) 폴더
+ ┃ ┃ ┣ 📜AuthFrame.jsx        // 로그인 & 회원가입 폼 레이아웃
+ ┃ ┃ ┗ 📜Form.jsx             // 로그인 & 회원가입 폼 
+ ┃ ┣ 📂shared                 // 공통 레이아웃 폴더
+ ┃ ┃ ┣ 📜Footer.jsx        
+ ┃ ┃ ┣ 📜Header.jsx        
+ ┃ ┃ ┗ 📜Layout.jsx           // Header, Footer 공통 레이아웃
+ ┃ ┗ 📂todo                 // Todo 관련 컴포넌트 및 모듈 폴더 
+ ┃ ┃ ┣ 📂todolist            
+ ┃ ┃ ┃ ┣ 📜ReadTodo.jsx       // Todo 컴포넌트 ( 읽기 상태 )
+ ┃ ┃ ┃ ┣ 📜Todo.jsx           // Todo 모듈 
+ ┃ ┃ ┃ ┣ 📜TodoList.jsx       // 생성된 Todo 리스트 ( 진행 & 완료 )
+ ┃ ┃ ┃ ┗ 📜UpdateTodo.jsx     // Todo 컴포넌트 ( 수정 상태 )
+ ┃ ┃ ┣ 📜CreateTodo.jsx       // Todo 생성 폼
+ ┃ ┃ ┗ 📜TodoContainer.jsx    // Todo 레이아웃
+ ┣ 📂elements               
+ ┃ ┣ 📜Button.jsx             // 재사용 버튼 컴포넌트 
+ ┃ ┗ 📜Input.jsx              // 재사용 인풋 컴포넌트
  ┣ 📂hooks
- ┃ ┗ 📜useInput.js
- ┣ 📂pages
+ ┃ ┗ 📜useInput.js            // 커스텀 인풋 훅 ( 중복 로직 처리 및 유효성 검사 )
+ ┣ 📂pages 
  ┃ ┣ 📜Auth.jsx
  ┃ ┣ 📜NotFound.jsx
  ┃ ┗ 📜TodoList.jsx
- ┣ 📂routers
- ┃ ┣ 📜PrivateRouter.jsx
- ┃ ┗ 📜Routers.jsx
- ┣ 📂shared
- ┃ ┣ 📜GlobalStyle.jsx
- ┃ ┣ 📜axios.jsx
- ┃ ┗ 📜token.js
+ ┣ 📂routers                // 라우팅 관련 파일
+ ┃ ┣ 📜PrivateRouter.jsx      // 로그인 유무 확인 후 리다이렉트 처리
+ ┃ ┗ 📜Routers.jsx          
+ ┣ 📂shared                 // 공통 모듈 파일  
+ ┃ ┣ 📜GlobalStyle.jsx        // 전역 스타일 
+ ┃ ┣ 📜axios.jsx              // axios 인스턴스 생성, config 관리 & 전역 에러 핸들링 
+ ┃ ┗ 📜token.js               // 로컬 스토리지 토큰 관리 함수 
  ┣ 📜App.js
  ┣ 📜index.js
  ┣ 📜reportWebVitals.js
